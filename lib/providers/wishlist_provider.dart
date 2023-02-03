@@ -6,7 +6,7 @@ import 'package:grocery_app/models/wishlist_model.dart';
 import '../const/firebase_const.dart';
 
 class WishlistProvider with ChangeNotifier {
-  Map<String, WishlistModel> _wishlistItem = {};
+  final Map<String, WishlistModel> _wishlistItem = {};
 
   Map<String, WishlistModel> get getWishlistItem {
     return _wishlistItem;

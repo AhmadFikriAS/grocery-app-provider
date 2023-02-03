@@ -50,20 +50,20 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
 
-    bool _isDark = themeState.getDarkTheme;
+    bool isDark = themeState.getDarkTheme;
     return Scaffold(
       // appBar: AppBar(
       // title: Text(_pages[_selectedIndex]['title']),
       //  ),
       body: _pages[_selectedIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: _isDark ? Theme.of(context).cardColor : Colors.white,
+        backgroundColor: isDark ? Theme.of(context).cardColor : Colors.white,
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: _selectedIndex,
-        unselectedItemColor: _isDark ? Colors.white10 : Colors.black12,
-        selectedItemColor: _isDark ? Colors.lightBlue.shade200 : Colors.black87,
+        unselectedItemColor: isDark ? Colors.white10 : Colors.black12,
+        selectedItemColor: isDark ? Colors.lightBlue.shade200 : Colors.black87,
         onTap: _selectedPage,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -80,10 +80,13 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           BottomNavigationBarItem(
             icon: Consumer<CartProvider>(builder: (_, myCart, ch) {
               return badges.Badge(
-                  toAnimate: true,
-                  shape: badges.BadgeShape.circle,
-                  badgeColor: Colors.blue,
-                  borderRadius: BorderRadius.circular(8),
+                  badgeAnimation:
+                      const badges.BadgeAnimation.slide(toAnimate: true),
+                  badgeStyle: badges.BadgeStyle(
+                    shape: badges.BadgeShape.circle,
+                    badgeColor: Colors.blue,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   position: badges.BadgePosition.topEnd(top: -7, end: -7),
                   badgeContent: FittedBox(
                     child: TextWidget(

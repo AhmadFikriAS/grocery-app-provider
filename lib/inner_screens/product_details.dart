@@ -43,8 +43,8 @@ class _ProductDetailsState extends State<ProductDetails> {
     final productId = ModalRoute.of(context)!.settings.arguments as String;
     final getCurrProduct = productProvider.findProdById(productId);
     final cartProvider = Provider.of<CartProvider>(context);
-    bool? _isInCart = cartProvider.getCartItem.containsKey(getCurrProduct.id);
-    bool? _isInWishlist =
+    bool? isInCart = cartProvider.getCartItem.containsKey(getCurrProduct.id);
+    bool? isInWishlist =
         wishlistProvider.getWishlistItem.containsKey(getCurrProduct.id);
     double usedPrice = getCurrProduct.isOnSale
         ? getCurrProduct.salePrice
@@ -113,7 +113,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ),
                           HeartBtn(
                             productId: getCurrProduct.id,
-                            isInWishlist: _isInWishlist,
+                            isInWishlist: isInWishlist,
                           ),
                         ],
                       ),
@@ -305,7 +305,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               color: Colors.green,
                               borderRadius: BorderRadius.circular(10),
                               child: InkWell(
-                                onTap: _isInCart
+                                onTap: isInCart
                                     ? null
                                     : () async {
                                         final User? user =
@@ -337,7 +337,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(12.0),
                                   child: TextWidget(
-                                    text: _isInCart ? 'In cart' : 'Add to cart',
+                                    text: isInCart ? 'In cart' : 'Add to cart',
                                     color: Colors.white,
                                     textSize: 18,
                                   ),

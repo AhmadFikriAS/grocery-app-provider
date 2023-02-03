@@ -39,14 +39,15 @@ class _FeedWidgetState extends State<FeedWidget> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
     final productModel = Provider.of<ProductModel>(context);
     final cartProvider = Provider.of<CartProvider>(context);
-    bool? _isInCart = cartProvider.getCartItem.containsKey(productModel.id);
+    bool? isInCart = cartProvider.getCartItem.containsKey(productModel.id);
     final wishlistProvider = Provider.of<WishlistProvider>(context);
-    bool? _isInWishlist =
+    bool? isInWishlist =
         wishlistProvider.getWishlistItem.containsKey(productModel.id);
 
     return Padding(
@@ -91,7 +92,7 @@ class _FeedWidgetState extends State<FeedWidget> {
                       flex: 1,
                       child: HeartBtn(
                         productId: productModel.id,
-                        isInWishlist: _isInWishlist,
+                        isInWishlist: isInWishlist,
                       ),
                     ),
                   ],
@@ -160,7 +161,7 @@ class _FeedWidgetState extends State<FeedWidget> {
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: _isInCart
+                  onPressed: isInCart
                       ? null
                       : () async {
                           final User? user = authInstance.currentUser;
@@ -195,7 +196,7 @@ class _FeedWidgetState extends State<FeedWidget> {
                     ),
                   ),
                   child: TextWidget(
-                    text: _isInCart ? 'In-Cart' : 'Add to cart',
+                    text: isInCart ? 'In-Cart' : 'Add to cart',
                     maxLines: 1,
                     color: color,
                     textSize: 20,

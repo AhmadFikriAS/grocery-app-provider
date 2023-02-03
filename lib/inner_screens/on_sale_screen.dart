@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:grocery_app/widgets/empty_prod.dart';
 import 'package:provider/provider.dart';
 
@@ -33,8 +32,8 @@ class OnSaleScreen extends StatelessWidget {
         ),
       ),
       body: productOnSale.isEmpty
-          ? EmptyProductWidget(
-              text: 'No products on sale yet!,\stay tune',
+          ? const EmptyProductWidget(
+              text: 'No products on sale yet!,stay tune',
             )
           : GridView.count(
               crossAxisCount: 2,

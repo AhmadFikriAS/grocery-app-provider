@@ -13,7 +13,7 @@ import 'package:grocery_app/widgets/text_widget.dart';
 import '../../widgets/back_widget.dart';
 
 class ForgotPassword extends StatefulWidget {
-  static final routeName = '/ForgotPassword';
+  static const routeName = '/ForgotPassword';
   const ForgotPassword({Key? key}) : super(key: key);
 
   @override

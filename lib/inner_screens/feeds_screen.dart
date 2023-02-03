@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:grocery_app/const/contss.dart';
 import 'package:provider/provider.dart';
 
 import '../models/product_model.dart';
@@ -20,13 +18,13 @@ class FeedsScreen extends StatefulWidget {
 }
 
 class _FeedsScreenState extends State<FeedsScreen> {
-  final TextEditingController? _searchTextController = TextEditingController();
+  final TextEditingController _searchTextController = TextEditingController();
   final FocusNode _searchTextFocusNode = FocusNode();
 
   @override
   void dispose() {
     _searchTextFocusNode.dispose();
-    _searchTextController!.dispose();
+    _searchTextController.dispose();
     super.dispose();
   }
 
@@ -91,7 +89,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
                       prefixIcon: const Icon(Icons.search),
                       suffix: IconButton(
                         onPressed: () {
-                          _searchTextController!.clear();
+                          _searchTextController.clear();
                           _searchTextFocusNode.unfocus();
                         },
                         icon: Icon(
@@ -104,7 +102,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
                 ),
               ),
             ),
-            _searchTextController!.text.isNotEmpty && listProductSearch.isEmpty
+            _searchTextController.text.isNotEmpty && listProductSearch.isEmpty
                 ? const EmptyProductWidget(
                     text: 'No products found, try another keyword',
                   )
@@ -116,11 +114,11 @@ class _FeedsScreenState extends State<FeedsScreen> {
                     // crossAxisSpacing: 10,
                     childAspectRatio: size.width / (size.height * 0.59),
                     children: List.generate(
-                        _searchTextController!.text.isNotEmpty
+                        _searchTextController.text.isNotEmpty
                             ? listProductSearch.length
                             : allProducts.length, (index) {
                       return ChangeNotifierProvider.value(
-                        value: _searchTextController!.text.isNotEmpty
+                        value: _searchTextController.text.isNotEmpty
                             ? listProductSearch[index]
                             : allProducts[index],
                         child: const FeedWidget(),

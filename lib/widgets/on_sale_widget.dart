@@ -31,9 +31,9 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
     final theme = Utils(context).getTheme;
     Size size = Utils(context).getScreenSize;
     final cartProvider = Provider.of<CartProvider>(context);
-    bool? _isInCart = cartProvider.getCartItem.containsKey(productModel.id);
+    bool? isInCart = cartProvider.getCartItem.containsKey(productModel.id);
     final wishlistProvider = Provider.of<WishlistProvider>(context);
-    bool? _isInWishlist =
+    bool? isInWishlist =
         wishlistProvider.getWishlistItem.containsKey(productModel.id);
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -77,7 +77,7 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: _isInCart
+                              onTap: isInCart
                                   ? null
                                   : () async {
                                       final User? user =
@@ -100,14 +100,14 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                                       // );
                                     },
                               child: Icon(
-                                _isInCart ? IconlyBold.bag2 : IconlyLight.bag2,
+                                isInCart ? IconlyBold.bag2 : IconlyLight.bag2,
                                 size: 22,
-                                color: _isInCart ? Colors.green : color,
+                                color: isInCart ? Colors.green : color,
                               ),
                             ),
                             HeartBtn(
                               productId: productModel.id,
-                              isInWishlist: _isInWishlist,
+                              isInWishlist: isInWishlist,
                             ),
                           ],
                         ),

@@ -56,10 +56,10 @@ class _UserScreenState extends State<UserScreen> {
       return;
     }
     try {
-      String _uid = user!.uid;
+      String uid = user!.uid;
 
       final DocumentSnapshot userDoc =
-          await FirebaseFirestore.instance.collection('users').doc(_uid).get();
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
       if (userDoc == null) {
         return;
       } else {
@@ -108,7 +108,7 @@ class _UserScreenState extends State<UserScreen> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _name == null ? 'user' : _name,
+                          text: _name ?? 'user',
                           style: TextStyle(
                             color: color,
                             fontSize: 27,
@@ -257,11 +257,11 @@ class _UserScreenState extends State<UserScreen> {
             actions: [
               TextButton(
                 onPressed: () async {
-                  String _uid = user!.uid;
+                  String uid = user!.uid;
                   try {
                     await FirebaseFirestore.instance
                         .collection('users')
-                        .doc(_uid)
+                        .doc(uid)
                         .update({
                       'shipping-address': _addressController.text,
                     });
@@ -296,7 +296,7 @@ class _UserScreenState extends State<UserScreen> {
       ),
       subtitle: TextWidget(
         color: color,
-        text: subtitle == null ? '' : subtitle,
+        text: subtitle ?? '',
         textSize: 18,
       ),
       leading: Icon(icon),

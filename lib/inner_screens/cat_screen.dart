@@ -18,14 +18,14 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  final TextEditingController? _searchTextController = TextEditingController();
+  final TextEditingController _searchTextController = TextEditingController();
   final FocusNode _searchTextFocusNode = FocusNode();
   List<ProductModel> listProductSearch = [];
 
   @override
   void dispose() {
     _searchTextFocusNode.dispose();
-    _searchTextController!.dispose();
+    _searchTextController.dispose();
     super.dispose();
   }
 
@@ -88,7 +88,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             prefixIcon: const Icon(Icons.search),
                             suffix: IconButton(
                               onPressed: () {
-                                _searchTextController!.clear();
+                                _searchTextController.clear();
                                 _searchTextFocusNode.unfocus();
                               },
                               icon: Icon(
@@ -101,7 +101,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       ),
                     ),
                   ),
-                  _searchTextController!.text.isNotEmpty &&
+                  _searchTextController.text.isNotEmpty &&
                           listProductSearch.isEmpty
                       ? const EmptyProductWidget(
                           text: 'No products found, try another keyword',
@@ -114,11 +114,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           // crossAxisSpacing: 10,
                           childAspectRatio: size.width / (size.height * 0.59),
                           children: List.generate(
-                              _searchTextController!.text.isNotEmpty
+                              _searchTextController.text.isNotEmpty
                                   ? listProductSearch.length
                                   : productByCat.length, (index) {
                             return ChangeNotifierProvider.value(
-                              value: _searchTextController!.text.isNotEmpty
+                              value: _searchTextController.text.isNotEmpty
                                   ? listProductSearch[index]
                                   : productByCat[index],
                               child: const FeedWidget(),

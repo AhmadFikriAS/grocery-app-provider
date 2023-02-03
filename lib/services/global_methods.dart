@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:grocery_app/const/firebase_const.dart';
 import 'package:uuid/uuid.dart';
 
-import '../inner_screens/on_sale_screen.dart';
 import '../widgets/text_widget.dart';
 
 class GlobalMethods {
@@ -88,7 +87,7 @@ class GlobalMethods {
                 const SizedBox(
                   height: 8,
                 ),
-                Text('Error Occured'),
+                const Text('Error Occured'),
               ],
             ),
             content: Text(subtitle),
@@ -115,10 +114,10 @@ class GlobalMethods {
       required int quantity,
       required BuildContext context}) async {
     final User? user = authInstance.currentUser;
-    final _uid = user!.uid;
+    final uid = user!.uid;
     final cartId = const Uuid().v4();
     try {
-      FirebaseFirestore.instance.collection('users').doc(_uid).update({
+      FirebaseFirestore.instance.collection('users').doc(uid).update({
         'userCart': FieldValue.arrayUnion([
           {
             'cartId': cartId,
@@ -141,10 +140,10 @@ class GlobalMethods {
   static Future<void> addToWishlist(
       {required String productId, required BuildContext context}) async {
     final User? user = authInstance.currentUser;
-    final _uid = user!.uid;
+    final uid = user!.uid;
     final wishlistId = const Uuid().v4();
     try {
-      FirebaseFirestore.instance.collection('users').doc(_uid).update({
+      FirebaseFirestore.instance.collection('users').doc(uid).update({
         'userWish': FieldValue.arrayUnion([
           {
             'wishlistId': wishlistId,

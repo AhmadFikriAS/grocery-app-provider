@@ -18,9 +18,9 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
-    bool _isEmpty = true;
+    bool isEmpty = true;
     final Color color = Utils(context).color;
-    return _isEmpty == true
+    return isEmpty == true
         ? const EmptyScreen(
             title: 'Your order is empty',
             subtitle: 'Add something to your cart',

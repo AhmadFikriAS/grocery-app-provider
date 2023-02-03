@@ -6,7 +6,7 @@ import 'package:grocery_app/const/firebase_const.dart';
 import '../models/cart_model.dart';
 
 class CartProvider with ChangeNotifier {
-  Map<String, CartModel> _cartItem = {};
+  final Map<String, CartModel> _cartItem = {};
 
   Map<String, CartModel> get getCartItem {
     return _cartItem;

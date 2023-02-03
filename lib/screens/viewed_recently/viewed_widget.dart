@@ -2,7 +2,6 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:grocery_app/inner_screens/product_details.dart';
 import 'package:grocery_app/services/global_methods.dart';
 import 'package:grocery_app/services/utils.dart';
 import 'package:grocery_app/widgets/text_widget.dart';
@@ -30,7 +29,7 @@ class _ViewedRecentlyWidgetState extends State<ViewedRecentlyWidget> {
         ? getCurrProduct.salePrice
         : getCurrProduct.price;
     final cartProvider = Provider.of<CartProvider>(context);
-    bool? _isInCart = cartProvider.getCartItem.containsKey(getCurrProduct.id);
+    bool? isInCart = cartProvider.getCartItem.containsKey(getCurrProduct.id);
     final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
     return Padding(
@@ -80,7 +79,7 @@ class _ViewedRecentlyWidgetState extends State<ViewedRecentlyWidget> {
                 color: Colors.green,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(12),
-                  onTap: _isInCart
+                  onTap: isInCart
                       ? null
                       : () async {
                           final User? user = authInstance.currentUser;
@@ -104,7 +103,7 @@ class _ViewedRecentlyWidgetState extends State<ViewedRecentlyWidget> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Icon(
-                      _isInCart ? Icons.check : IconlyBold.plus,
+                      isInCart ? Icons.check : IconlyBold.plus,
                       color: Colors.white,
                       size: 20,
                     ),

@@ -20,7 +20,7 @@ class ProductsProvider with ChangeNotifier {
         .then((QuerySnapshot productSnapshot) {
       _productsList = [];
       // _productsList.clear();
-      productSnapshot.docs.forEach((element) {
+      for (var element in productSnapshot.docs) {
         _productsList.insert(
             0,
             ProductModel(
@@ -35,7 +35,7 @@ class ProductsProvider with ChangeNotifier {
               isOnSale: element.get('isOnSale'),
               isPiece: element.get('isPiece'),
             ));
-      });
+      }
     });
     notifyListeners();
   }
@@ -47,17 +47,17 @@ class ProductsProvider with ChangeNotifier {
   }
 
   List<ProductModel> findByCategory(String categoryName) {
-    List<ProductModel> _categoryList = _productsList
+    List<ProductModel> categoryList = _productsList
         .where((element) => element.productCategoryName
             .toLowerCase()
             .contains(categoryName.toLowerCase()))
         .toList();
 
-    return _categoryList;
+    return categoryList;
   }
 
   List<ProductModel> searchQuery(String searchText) {
-    List<ProductModel> _searchList = _productsList
+    List<ProductModel> searchList = _productsList
         .where(
           (element) => element.title.toLowerCase().contains(
                 searchText.toLowerCase(),
@@ -65,7 +65,7 @@ class ProductsProvider with ChangeNotifier {
         )
         .toList();
 
-    return _searchList;
+    return searchList;
   }
 
 //   static final List<ProductModel> _productsList = [

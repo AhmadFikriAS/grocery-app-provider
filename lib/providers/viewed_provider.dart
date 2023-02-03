@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../models/viewed_model.dart';
 
 class ViewedProvider with ChangeNotifier {
-  Map<String, ViewedModel> _viewedItem = {};
+  final Map<String, ViewedModel> _viewedItem = {};
 
   Map<String, ViewedModel> get getViewedItem {
     return _viewedItem;

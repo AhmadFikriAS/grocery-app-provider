@@ -8,7 +8,6 @@ import 'package:grocery_app/const/contss.dart';
 import 'package:grocery_app/const/firebase_const.dart';
 import 'package:grocery_app/fetch_screen.dart';
 import 'package:grocery_app/screens/auth/login.dart';
-import 'package:grocery_app/screens/btm_bar.dart';
 import 'package:grocery_app/screens/loading_manager.dart';
 import 'package:grocery_app/services/global_methods.dart';
 import 'package:grocery_app/widgets/auth_button.dart';
@@ -61,11 +60,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
             email: _emailTextController.text.toLowerCase().trim(),
             password: _passTextController.text.trim());
         final User? user = authInstance.currentUser;
-        final _uid = user!.uid;
+        final uid = user!.uid;
         user.updateDisplayName(_fullNameController.text);
         user.reload();
-        await FirebaseFirestore.instance.collection('users').doc(_uid).set({
-          'id': _uid,
+        await FirebaseFirestore.instance.collection('users').doc(uid).set({
+          'id': uid,
           'name': _fullNameController.text,
           'email': _emailTextController.text.toLowerCase(),
           'shipping-address': _addressTextController.text,

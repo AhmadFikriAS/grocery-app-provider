@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import '../../models/wishlist_model.dart';
 import '../../providers/products_provider.dart';
 import '../../providers/wishlist_provider.dart';
-import '../../services/global_methods.dart';
 import '../../widgets/heart_btn.dart';
 import '../../widgets/text_widget.dart';
 
@@ -28,7 +27,7 @@ class WishlistWidget extends StatelessWidget {
     double usedPrice = getCurrProduct.isOnSale
         ? getCurrProduct.salePrice
         : getCurrProduct.price;
-    bool? _isInWishlist =
+    bool? isInWishlist =
         wishlistProvider.getWishlistItem.containsKey(getCurrProduct.id);
     return Padding(
       padding: const EdgeInsets.all(4.0),
@@ -76,7 +75,7 @@ class WishlistWidget extends StatelessWidget {
                           ),
                           HeartBtn(
                             productId: getCurrProduct.id,
-                            isInWishlist: _isInWishlist,
+                            isInWishlist: isInWishlist,
                           ),
                         ],
                       ),
