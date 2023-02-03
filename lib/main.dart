@@ -11,8 +11,6 @@ import 'package:grocery_app/providers/wishlist_provider.dart';
 import 'package:grocery_app/screens/auth/forgot_password.dart';
 import 'package:grocery_app/screens/auth/login.dart';
 import 'package:grocery_app/screens/auth/register.dart';
-import 'package:grocery_app/screens/btm_bar.dart';
-
 import 'package:grocery_app/screens/orders/order_screen.dart';
 import 'package:grocery_app/screens/viewed_recently/viewed_recently.dart';
 import 'package:grocery_app/screens/wishlist/wishlist_screen.dart';

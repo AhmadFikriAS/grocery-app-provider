@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:grocery_app/const/firebase_const.dart';
 import 'package:grocery_app/widgets/empty_screen.dart';
 
@@ -113,7 +114,12 @@ class CartScreen extends StatelessWidget {
                 onTap: () async {
                   User? user = authInstance.currentUser;
                   final orderId = const Uuid().v4();
+                  final productsProvider =
+                      Provider.of<ProductsProvider>(ctx, listen: false);
+
                   cartProvider.getCartItem.forEach((key, value) async {
+                    final getCurrProduct =
+                        productProvider.findProdById(value.productId);
                     try {
                       await FirebaseFirestore.instance
                           .collection('orders')
@@ -121,9 +127,25 @@ class CartScreen extends StatelessWidget {
                           .set({
                         'orderId': orderId,
                         'userId': user!.uid,
-                        'productId': value.productId, 
-                        'price': value.price
+                        'productId': value.productId,
+                        'price': (getCurrProduct.isOnSale
+                                ? getCurrProduct.salePrice
+                                : getCurrProduct.price) *
+                            value.quantity,
+                        'totalPrice': total,
+                        'quantity': value.quantity,
+                        'imageUrl': getCurrProduct.imageUrl,
+                        'userName': user.displayName,
+                        'orderDate': Timestamp.now(),
                       });
+
+                      await cartProvider.clearOnlineCart();
+                      cartProvider.clearLocalCart();
+                      // Fetch the orders here
+                      await Fluttertoast.showToast(
+                          msg: "You order has been placed",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER);
                     } catch (error) {
                       GlobalMethods.errorDialog(
                           subtitle: error.toString(), context: ctx);
