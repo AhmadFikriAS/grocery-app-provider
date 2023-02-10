@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../providers/cart_provider.dart';
+import '../../providers/orders_provider.dart';
 import '../../providers/products_provider.dart';
 import '../../services/global_methods.dart';
 import '../../widgets/text_widget.dart';
@@ -90,6 +91,7 @@ class CartScreen extends StatelessWidget {
     Size size = Utils(ctx).getScreenSize;
     final cartProvider = Provider.of<CartProvider>(ctx);
     final productProvider = Provider.of<ProductsProvider>(ctx);
+    final ordersProvider = Provider.of<OrdersProvider>(ctx);
     double total = 0.0;
     cartProvider.getCartItem.forEach((key, value) {
       final getCurrProduct = productProvider.findProdById(value.productId);
@@ -114,7 +116,7 @@ class CartScreen extends StatelessWidget {
                 onTap: () async {
                   User? user = authInstance.currentUser;
                   final orderId = const Uuid().v4();
-                  final productsProvider =
+                  final productProvider =
                       Provider.of<ProductsProvider>(ctx, listen: false);
 
                   cartProvider.getCartItem.forEach((key, value) async {
@@ -141,6 +143,7 @@ class CartScreen extends StatelessWidget {
 
                       await cartProvider.clearOnlineCart();
                       cartProvider.clearLocalCart();
+                      ordersProvider.fetchOrders();
                       // Fetch the orders here
                       await Fluttertoast.showToast(
                           msg: "You order has been placed",
