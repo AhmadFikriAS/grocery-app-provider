@@ -23,9 +23,9 @@ class _OrderWidgetState extends State<OrderWidget> {
   @override
   void didChangeDependencies() {
     final ordersModel = Provider.of<OrderModel>(context);
-    var ordersDate = ordersModel.orderDate.toDate();
+    var ordersDate = ordersModel.orderDate?.toDate();
     orderDateToShow =
-        '${ordersDate.day}/${ordersDate.month}/${ordersDate.year}';
+        '${ordersDate?.day}/${ordersDate?.month}/${ordersDate?.year}';
     super.didChangeDependencies();
   }
 
@@ -35,10 +35,10 @@ class _OrderWidgetState extends State<OrderWidget> {
     final Color color = Utils(context).color;
     Size size = Utils(context).getScreenSize;
     final productProvider = Provider.of<ProductsProvider>(context);
-    final getCurrProduct = productProvider.findProdById(ordersModel.productId);
+    final getCurrProduct = productProvider.findProdById(ordersModel.productId!);
     return ListTile(
       subtitle: Text(
-          'Paid : \$${double.parse(ordersModel.price).toStringAsFixed(2)}'),
+          'Paid : \$${double.parse(ordersModel.price!).toStringAsFixed(2)}'),
       onTap: () {
         GlobalMethods.navigateTo(
             ctx: context, routeName: ProductDetails.routeName);

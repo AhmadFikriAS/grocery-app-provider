@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 
 class OrderModel with ChangeNotifier {
-  final String orderId, userId, productId, userName, price, imageUrl, quantity;
-  final Timestamp orderDate;
+  final String? orderId, userId, productId, userName, price, imageUrl, quantity;
+  final Timestamp? orderDate;
 
   OrderModel(
       {required this.orderId,
