@@ -160,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: const NeverScrollableScrollPhysics(),
               crossAxisCount: 2,
               padding: EdgeInsets.zero,
-              childAspectRatio: size.width / (size.height * 0.59),
+              childAspectRatio: size.width / (size.height * 0.61),
               children: List.generate(
                   allProducts.length < 4 ? allProducts.length : 4, (index) {
                 return ChangeNotifierProvider.value(
