@@ -23,9 +23,9 @@ class _OrderWidgetState extends State<OrderWidget> {
   @override
   void didChangeDependencies() {
     final ordersModel = Provider.of<OrderModel>(context);
-    var ordersDate = ordersModel.orderDate?.toDate();
+    var ordersDate = ordersModel.orderDate!.toDate();
     orderDateToShow =
-        '${ordersDate?.day}/${ordersDate?.month}/${ordersDate?.year}';
+        '${ordersDate.day}/${ordersDate.month}/${ordersDate.year}';
     super.didChangeDependencies();
   }
 
