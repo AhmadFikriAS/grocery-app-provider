@@ -27,7 +27,7 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   final TextEditingController _addressController =
-      TextEditingController(text: '');
+      TextEditingController(text: "");
   @override
   void dispose() {
     _addressController.dispose();
@@ -108,7 +108,7 @@ class _UserScreenState extends State<UserScreen> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: _name ?? 'user',
+                          text: _name == null ? 'user' : _name!,
                           style: TextStyle(
                             color: color,
                             fontSize: 27,
