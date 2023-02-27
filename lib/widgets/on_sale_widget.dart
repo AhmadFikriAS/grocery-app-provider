@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../const/firebase_const.dart';
 import '../models/product_model.dart';
 import '../providers/cart_provider.dart';
+import '../providers/viewed_provider.dart';
 import '../providers/wishlist_provider.dart';
 import 'heart_btn.dart';
 
@@ -35,6 +36,8 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
     final wishlistProvider = Provider.of<WishlistProvider>(context);
     bool? isInWishlist =
         wishlistProvider.getWishlistItem.containsKey(productModel.id);
+
+    final viewedProvider = Provider.of<ViewedProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Material(
@@ -43,6 +46,7 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
           onTap: () {
+            viewedProvider.addProductToHistory(productId: productModel.id);
             Navigator.pushNamed(context, ProductDetails.routeName,
                 arguments: productModel.id);
             // GlobalMethods.navigateTo(
