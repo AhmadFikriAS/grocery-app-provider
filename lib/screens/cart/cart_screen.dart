@@ -26,7 +26,6 @@ class CartScreen extends StatelessWidget {
     final cartItemList =
         cartProvider.getCartItem.values.toList().reversed.toList();
     final Color color = Utils(context).color;
-    Size size = Utils(context).getScreenSize;
     return cartItemList.isEmpty
         ? const EmptyScreen(
             title: 'Your cart is empty',

@@ -22,7 +22,6 @@ class WishlistScreen extends StatelessWidget {
     final wishlistItemList =
         wishlistProvider.getWishlistItem.values.toList().reversed.toList();
     final Color color = Utils(context).color;
-    Size size = Utils(context).getScreenSize;
     return wishlistItemList.isEmpty
         ? const EmptyScreen(
             title: 'Your cart is empty',

@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import '../const/firebase_const.dart';
 import '../providers/cart_provider.dart';
 import '../providers/products_provider.dart';
-import '../providers/viewed_provider.dart';
 import '../providers/wishlist_provider.dart';
 import '../services/global_methods.dart';
 import '../services/utils.dart';
@@ -50,7 +49,6 @@ class _ProductDetailsState extends State<ProductDetails> {
         ? getCurrProduct.salePrice
         : getCurrProduct.price;
     double totalPrice = usedPrice * int.parse(_quantityTextController.text);
-    final viewedProvider = Provider.of<ViewedProvider>(context);
     return WillPopScope(
       onWillPop: () async {
         //  viewedProvider.addProductToHistory(productId: productId);

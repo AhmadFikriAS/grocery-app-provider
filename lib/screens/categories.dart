@@ -4,6 +4,7 @@ import '../services/utils.dart';
 import '../widgets/categories_widget.dart';
 import '../widgets/text_widget.dart';
 
+// ignore: must_be_immutable
 class CategoriesScreen extends StatelessWidget {
   CategoriesScreen({Key? key}) : super(key: key);
 

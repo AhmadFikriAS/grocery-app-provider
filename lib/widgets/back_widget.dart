@@ -8,7 +8,6 @@ class BackWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color color = Utils(context).color;
-    Size size = Utils(context).getScreenSize;
     return InkWell(
       borderRadius: BorderRadius.circular(12),
       onTap: () {

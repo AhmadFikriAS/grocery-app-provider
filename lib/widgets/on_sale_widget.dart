@@ -29,7 +29,6 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
   Widget build(BuildContext context) {
     final productModel = Provider.of<ProductModel>(context);
     final Color color = Utils(context).color;
-    final theme = Utils(context).getTheme;
     Size size = Utils(context).getScreenSize;
     final cartProvider = Provider.of<CartProvider>(context);
     bool? isInCart = cartProvider.getCartItem.containsKey(productModel.id);
